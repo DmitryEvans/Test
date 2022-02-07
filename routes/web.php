@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\PositionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes([
+    'register' => false,
+    'verify' => false,
+    'reset' => false,
+    'confirm' => false,
+]);
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+
+    Route::resource('employees', EmployeesController::class);
+
+    Route::resource('positions', PositionsController::class);
 });
+
