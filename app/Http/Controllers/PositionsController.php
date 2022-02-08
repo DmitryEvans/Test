@@ -13,7 +13,7 @@ class PositionsController extends Controller
      */
     public function index()
     {
-        //
+        return view('positions.index');
     }
 
     /**
