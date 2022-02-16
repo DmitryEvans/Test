@@ -1,4 +1,1 @@
-@extends('adminlte::auth.login')
-
-@section('auth_footer')
-@stop
+@extends('vendor.adminlte.auth.login')
